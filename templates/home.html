@@ -1,4 +1,7 @@
 <html>
+<title>
+Tic Tac Toe
+</title>
 <head>
 	Tic tac toe
 </head>
@@ -10,34 +13,45 @@
             {% endfor %}
         </ul>
     {% endif %}
-<p>
-{% if midgame %}
-You are playing as {{ color }}.
-{% else %}
-Welcomd to Tic Tac Toe
-<br>
-Would you like to play as X or O?
-<form action="/select-player/" method = "put">
-<input type="submit" value="X" name="color">
-<input type="submit" value="O" name="color">
-</form>
-{% endif %}
-</p>
-<p>
-hi
-</p>
-<p>
-{{ 0 }}|{{ 1 }}|{{ 2 }}
-<br>
--+-+-
-<br>
-{{ 3 }}|{{ 4 }}|{{ 5 }}
-<br>
--+-+-
-<br>
-{{ 7 }}|{{ 8 }}|{{ 9 }}
-</p>
 
+<p>
+
+<form action="/move/" method="put">
+{% if g1 %} {{ g1 }} {% else %}
+<input type="submit" value="g1" name="move">
+{% endif %}
+{% if g2 %} {{ g2 }} {% else %}
+<input type="submit" value="g2" name="move">
+{% endif %}
+{% if g3 %} {{ g3 }} {% else %}
+<input type="submit" value="g3" name="move">
+{% endif %}
+<br>
+{% if g4 %} {{ g4 }} {% else %}
+<input type="submit" value="g4" name="move">
+{% endif %}
+{% if g5 %} {{ g5 }} {% else %}
+<input type="submit" value="g5" name="move">
+{% endif %}
+{% if g6 %} {{ g6 }} {% else %}
+<input type="submit" value="g6" name="move">
+{% endif %}
+<br>
+{% if g7 %} {{ g7 }} {% else %}
+<input type="submit" value="g7" name="move">
+{% endif %}
+{% if g8 %} {{ g8 }} {% else %}
+<input type="submit" value="g8" name="move">
+{% endif %}
+{% if g9 %} {{ g9 }} {% else %}
+<input type="submit" value="g9" name="move">
+{% endif %}
+</form>
+
+
+<form action="/new-game/" method="put">
+<input type="submit" value="New Game">
+</form>
 
 </body>
 </html>
