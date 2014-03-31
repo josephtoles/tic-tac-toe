@@ -1,0 +1,43 @@
+<html>
+<head>
+	Tic tac toe
+</head>
+<body>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+<p>
+{% if midgame %}
+You are playing as {{ color }}.
+{% else %}
+Welcomd to Tic Tac Toe
+<br>
+Would you like to play as X or O?
+<form action="/select-player/" method = "put">
+<input type="submit" value="X" name="color">
+<input type="submit" value="O" name="color">
+</form>
+{% endif %}
+</p>
+<p>
+hi
+</p>
+<p>
+{{ 0 }}|{{ 1 }}|{{ 2 }}
+<br>
+-+-+-
+<br>
+{{ 3 }}|{{ 4 }}|{{ 5 }}
+<br>
+-+-+-
+<br>
+{{ 7 }}|{{ 8 }}|{{ 9 }}
+</p>
+
+
+</body>
+</html>
