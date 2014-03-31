@@ -3,6 +3,8 @@
 # For this program I call X/O 'color' because players in
 # board games are usually distinguished by colors.
 
+import random
+
 class Board:
 	def __init__(self):
 		#positions numbered [0,8]
@@ -15,6 +17,11 @@ class Board:
 		if self.turn_index % 2 == 1:
 			return 'X'
 		return 'O'
+
+	def opposing_player(self):
+		if self.current_player() == 'X':
+			return 'O'
+		return 'X'
 
 	#returns boolean representing success
 	def place_at(self, loc):
@@ -33,7 +40,7 @@ class Board:
 	#returns winner, False otherwise
 	def game_over(self):
 		if self.turn_index >= 10:
-			return
+			return 'draw'
 		#columns
 		for i in range(0,3):
 			temp = self.grid[i]
@@ -52,6 +59,7 @@ class Board:
 		if temp != None and temp == self.grid[4] and temp == self.grid[6]:
 			return temp
 
+	#for testing purposes only
 	def to_string(self):
 		output = ''
 		for i in range(0,9):
@@ -70,3 +78,59 @@ class Board:
 		while not success:
 			index = random.randrange(9)
 			success = self.place_at(index)
+
+	def move_optimal(self):
+		if self.game_over():
+			return False
+		#simple heuristic
+		if self.turn_index == 2 or self.turn_index == 3:
+			success = self.place_at(4)
+			while not success:
+				success = self.place_at(random.randrange(1)*2+random.randrange(1)*6)
+			return
+		options = []
+		for i in range(0,9):
+			b = self.copy()
+			legal = b.place_at(i)
+			if not legal:
+				options.append('illegal')
+			else:
+				result = b.test()
+				options.append(result)
+				if result == self.current_player():
+					self.place_at(i)
+					return
+		for i in range(0,9):
+			if options[i] == 'draw':
+				self.place_at(i)
+				return
+		self.move_random()
+
+	def copy(self):
+		copy = Board()
+		copy.grid = []
+		for i in range(0,9):
+			copy.grid.append(self.grid[i])
+		copy.turn_index = self.turn_index
+		return copy
+
+	#returns winner under perfect play
+	def test(self):
+		options = []
+		for i in range(0,9):
+			test = self.copy()
+			legal = test.place_at(i)
+			if not legal:
+				options.append('illegal')
+				continue
+			winner = test.game_over()
+			if winner:
+				options.append(winner)
+				continue
+			options.append(test.test())
+		if self.current_player() in options:
+			return self.current_player()
+		if 'draw' in options:
+			return 'draw'
+		return self.opposing_player()
+		

@@ -10,15 +10,19 @@ def select_player(request):
 	if 'color' in request.GET:
 		color = request.GET['color']
 		request.session['color'] = color
+		if color == 'O':
+			newboard = Board()
+			newboard.move_random()
+			request.session['board'] = newboard
 		return render(request, 'home.html', request.session)
-	else:
-		errors.append('No color selected.')
 
 def move(request):
 	if 'move' in request.GET:
 		newboard = request.session['board']
 		command = int(request.GET['move'])
-		newboard.place_at(command-1)
+		success = newboard.place_at(command-1)
+		if success:
+			newboard.move_optimal()
 		request.session['board'] = newboard
 	return render(request, 'home.html', request.session)
 

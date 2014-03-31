@@ -3,7 +3,7 @@
 Tic Tac Toe
 </title>
 <head>
-	Tic tac toe
+	Tic Tac Toe
 </head>
 <body>
     {% if errors %}
@@ -17,37 +17,36 @@ Tic Tac Toe
 <p>
 
 <form action="/move/" method="put">
-{% if g1 %} {{ g1 }} {% else %}
-<input type="submit" value="g1" name="move">
+{% if board.grid.0 %} {{ board.grid.0 }} {% else %}
+<input type="submit" value="1" name="move">
 {% endif %}
-{% if g2 %} {{ g2 }} {% else %}
-<input type="submit" value="g2" name="move">
+{% if board.grid.1 %} {{ board.grid.1 }} {% else %}
+<input type="submit" value="2" name="move">
 {% endif %}
-{% if g3 %} {{ g3 }} {% else %}
-<input type="submit" value="g3" name="move">
-{% endif %}
-<br>
-{% if g4 %} {{ g4 }} {% else %}
-<input type="submit" value="g4" name="move">
-{% endif %}
-{% if g5 %} {{ g5 }} {% else %}
-<input type="submit" value="g5" name="move">
-{% endif %}
-{% if g6 %} {{ g6 }} {% else %}
-<input type="submit" value="g6" name="move">
+{% if board.grid.2 %} {{ board.grid.2 }} {% else %}
+<input type="submit" value="3" name="move">
 {% endif %}
 <br>
-{% if g7 %} {{ g7 }} {% else %}
-<input type="submit" value="g7" name="move">
+{% if board.grid.3 %} {{ board.grid.3 }} {% else %}
+<input type="submit" value="4" name="move">
 {% endif %}
-{% if g8 %} {{ g8 }} {% else %}
-<input type="submit" value="g8" name="move">
+{% if board.grid.4 %} {{ board.grid.4 }} {% else %}
+<input type="submit" value="5" name="move">
 {% endif %}
-{% if g9 %} {{ g9 }} {% else %}
-<input type="submit" value="g9" name="move">
+{% if board.grid.5 %} {{ board.grid.5 }} {% else %}
+<input type="submit" value="6" name="move">
+{% endif %}
+<br>
+{% if board.grid.6 %} {{ board.grid.6 }} {% else %}
+<input type="submit" value="7" name="move">
+{% endif %}
+{% if board.grid.7 %} {{ board.grid.7 }} {% else %}
+<input type="submit" value="8" name="move">
+{% endif %}
+{% if board.grid.8 %} {{ board.grid.8 }} {% else %}
+<input type="submit" value="9" name="move">
 {% endif %}
 </form>
-
 
 <form action="/new-game/" method="put">
 <input type="submit" value="New Game">
