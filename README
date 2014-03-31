@@ -1,0 +1,3 @@
+Most of this project should work once the libraries are installed.
+
+The one exception is in settings.py. I used sqlite3 so DATABASES['NAME'] should be modified to the exact path your system is using.

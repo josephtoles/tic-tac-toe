@@ -6,50 +6,86 @@ Tic Tac Toe
 	Tic Tac Toe
 </head>
 <body>
-    {% if errors %}
-        <ul>
-            {% for error in errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+ {% if errors %}
+  <ul>
+   {% for error in errors %}
+   <li>{{ error }}</li>
+   {% endfor %}
+  </ul>
+ {% endif %}
 
 <p>
 
 <form action="/move/" method="put">
-{% if board.grid.0 %} {{ board.grid.0 }} {% else %}
-<input type="submit" value="1" name="move">
-{% endif %}
-{% if board.grid.1 %} {{ board.grid.1 }} {% else %}
-<input type="submit" value="2" name="move">
-{% endif %}
-{% if board.grid.2 %} {{ board.grid.2 }} {% else %}
-<input type="submit" value="3" name="move">
-{% endif %}
-<br>
-{% if board.grid.3 %} {{ board.grid.3 }} {% else %}
-<input type="submit" value="4" name="move">
-{% endif %}
-{% if board.grid.4 %} {{ board.grid.4 }} {% else %}
-<input type="submit" value="5" name="move">
-{% endif %}
-{% if board.grid.5 %} {{ board.grid.5 }} {% else %}
-<input type="submit" value="6" name="move">
-{% endif %}
-<br>
-{% if board.grid.6 %} {{ board.grid.6 }} {% else %}
-<input type="submit" value="7" name="move">
-{% endif %}
-{% if board.grid.7 %} {{ board.grid.7 }} {% else %}
-<input type="submit" value="8" name="move">
-{% endif %}
-{% if board.grid.8 %} {{ board.grid.8 }} {% else %}
-<input type="submit" value="9" name="move">
-{% endif %}
+ <table>
+  <tr>
+   <td>
+    {% if board.grid.0 %} {{ board.grid.0 }} {% else %}
+     <input type="submit" value="1" name="move">
+    {% endif %}
+   </td>
+   <td>
+    {% if board.grid.1 %} {{ board.grid.1 }} {% else %}
+     <input type="submit" value="2" name="move">
+    {% endif %}
+   </td>
+   <td>
+    {% if board.grid.2 %} {{ board.grid.2 }} {% else %}
+     <input type="submit" value="3" name="move">
+    {% endif %}
+   </td>
+  </tr>
+  <tr>
+   <td>
+    {% if board.grid.3 %} {{ board.grid.3 }} {% else %}
+     <input type="submit" value="4" name="move">
+    {% endif %}
+   </td>
+   <td>
+    {% if board.grid.4 %} {{ board.grid.4 }} {% else %}
+     <input type="submit" value="5" name="move">
+    {% endif %}
+   </td>
+   <td>
+    {% if board.grid.5 %} {{ board.grid.5 }} {% else %}
+     <input type="submit" value="6" name="move">
+    {% endif %}
+   </td>
+  </tr>
+  <tr>
+   <td>
+    {% if board.grid.6 %} {{ board.grid.6 }} {% else %}
+     <input type="submit" value="7" name="move">
+    {% endif %}
+   </td>
+   <td>
+    {% if board.grid.7 %} {{ board.grid.7 }} {% else %}
+     <input type="submit" value="8" name="move">
+    {% endif %}
+   </td>
+   <td>
+    {% if board.grid.8 %} {{ board.grid.8 }} {% else %}
+     <input type="submit" value="9" name="move">
+    {% endif %}
+   </td>
+  </tr>
+ </table>
 </form>
 
+{% if board.is_draw %}
+ <p>
+  It is a draw.
+ </p>
+{% else %}
+ {% if board.game_over %}
+  <p>
+   The winner is {{ board.game_over }}!
+  </p>
+ {% endif %}
+{% endif %}
+
 <form action="/new-game/" method="put">
-<input type="submit" value="New Game">
+ <input type="submit" value="New Game">
 </form>
 
 </body>

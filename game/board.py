@@ -39,8 +39,6 @@ class Board:
 	
 	#returns winner, False otherwise
 	def game_over(self):
-		if self.turn_index >= 10:
-			return 'draw'
 		#columns
 		for i in range(0,3):
 			temp = self.grid[i]
@@ -58,6 +56,13 @@ class Board:
 		temp = self.grid[2]
 		if temp != None and temp == self.grid[4] and temp == self.grid[6]:
 			return temp
+	
+		#full board
+		if self.turn_index >= 10:
+			return 'draw'
+
+	def is_draw(self):
+		return self.game_over() == 'draw'
 
 	#for testing purposes only
 	def to_string(self):
