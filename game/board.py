@@ -64,18 +64,6 @@ class Board:
 	def is_draw(self):
 		return self.game_over() == 'draw'
 
-	#for testing purposes only
-	def to_string(self):
-		output = ''
-		for i in range(0,9):
-			if self.grid[i] == None:
-				output += '_'
-			else:
-				output += self.grid[i]
-			if i == 2 or i == 5:
-				output = output+'\n'
-		return output
-
 	def move_random(self):
 		if self.game_over():
 			return False
@@ -93,6 +81,7 @@ class Board:
 			while not success:
 				success = self.place_at(random.randrange(1)*2+random.randrange(1)*6)
 			return
+		#brute force search
 		options = []
 		for i in range(0,9):
 			b = self.copy()
@@ -138,4 +127,15 @@ class Board:
 		if 'draw' in options:
 			return 'draw'
 		return self.opposing_player()
-		
+
+	#for testing purposes only
+	def to_string(self):
+		output = ''
+		for i in range(0,9):
+			if self.grid[i] == None:
+				output += '_'
+			else:
+				output += self.grid[i]
+			if i == 2 or i == 5:
+				output = output+'\n'
+		return output
