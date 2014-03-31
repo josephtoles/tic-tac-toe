@@ -27,5 +27,7 @@ def move(request):
 	return render(request, 'home.html', request.session)
 
 def home(request):
+	if 'color' not in request.session:
+		request.session['color'] = 'X'color
 	return render(request, 'home.html', request.session)
 
